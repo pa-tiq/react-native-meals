@@ -16,7 +16,12 @@ const MealsScreen = ({ route }) => {
           meal.id;
         }}
         renderItem={(itemData) => {
-          return <MealItem title={itemData.item.title}/>
+          return (
+            <MealItem
+              title={itemData.item.title}
+              imageUrl={itemData.item.imageUrl}
+            />
+          );
         }}
       />
     </View>
