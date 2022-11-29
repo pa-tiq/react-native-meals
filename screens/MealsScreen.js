@@ -9,6 +9,22 @@ const MealsScreen = ({ route, navigation }) => {
     return mealItem.categoryIds.indexOf(categoryId) >= 0;
   });
 
+  const renderMealItem = (itemData) => {
+    const pressHandler = () => {
+      navigation.navigate('ItemDetails', { mealId: itemData.item.id });
+    };    
+    return (
+      <MealItem
+        title={itemData.item.title}
+        imageUrl={itemData.item.imageUrl}
+        affordability={itemData.item.affordability}
+        complexity={itemData.item.complexity}
+        duration={itemData.item.duration}
+        onPress={pressHandler}
+      />
+    );
+  }
+
   useLayoutEffect(() => {
     const categoryTitle = CATEGORIES.find(
       (category) => category.id === categoryId
@@ -23,17 +39,7 @@ const MealsScreen = ({ route, navigation }) => {
         keyExtractor={(meal) => {
           return meal.id;
         }}
-        renderItem={(itemData) => {
-          return (
-            <MealItem
-              title={itemData.item.title}
-              imageUrl={itemData.item.imageUrl}
-              affordability={itemData.item.affordability}
-              complexity={itemData.item.complexity}
-              duration={itemData.item.duration}
-            />
-          );
-        }}
+        renderItem={renderMealItem}
       />
     </View>
   );

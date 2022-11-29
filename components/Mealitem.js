@@ -1,9 +1,9 @@
 import { Image, StyleSheet, Text, View, Pressable } from 'react-native';
 import PressableCard from './PressableCard';
 
-const MealItem = ({ title, imageUrl, duration, complexity, affordability }) => {
+const MealItem = ({ title, imageUrl, duration, complexity, affordability, onPress }) => {
   return (
-    <PressableCard>
+    <PressableCard onPress={onPress}>
       <View style={styles.innerContainer}>
         <View>
           <Image source={{ uri: imageUrl }} style={styles.image} />
