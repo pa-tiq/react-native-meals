@@ -1,7 +1,14 @@
-import { Image, StyleSheet, Text, View, Pressable } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import PressableCard from './PressableCard';
 
-const MealItem = ({ title, imageUrl, duration, complexity, affordability, onPress }) => {
+const MealItem = ({
+  title,
+  imageUrl,
+  duration,
+  complexity,
+  affordability,
+  onPress,
+}) => {
   return (
     <PressableCard onPress={onPress}>
       <View style={styles.innerContainer}>
@@ -42,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 8,
-    marginBottom: 5
+    marginBottom: 5,
   },
   detailItem: {
     marginHorizontal: 4,

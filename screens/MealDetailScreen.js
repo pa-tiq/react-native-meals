@@ -1,12 +1,30 @@
+import { useLayoutEffect } from 'react';
 import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+import IconButton from '../components/IconButton';
 import { MEALS } from '../data/dummy-data';
-import Card from '../components/Card';
 
-const MealDetailScreen = ({ route }) => {
+const MealDetailScreen = ({ route, navigation }) => {
   const mealId = route.params.mealId;
   const meal = MEALS.find((meal) => {
     return meal.id === mealId;
   });
+
+  const headerButtonPressHandler = () => {
+    console.log('oi');
+  };
+  const headerButton = () => {
+    return <IconButton title='oi' onPress={headerButtonPressHandler}/>;
+  };
+  useLayoutEffect(() => {
+    const mealTitle = MEALS.find(
+      (meal) => meal.id === mealId
+    ).title;
+    navigation.setOptions({
+      headerRight: headerButton,
+      title: mealTitle
+    })
+  },[]);
+
   return (
     <ScrollView style={styles.innerContainer}>
       <View>
@@ -24,8 +42,8 @@ const MealDetailScreen = ({ route }) => {
       <View style={styles.detailList}>
         {meal.ingredients.map((ingredient, idx) => {
           return (
-            <View style={styles.detailItem}>
-              <Text style={styles.detailItemText} key={idx}>
+            <View style={styles.detailItem} key={idx}>
+              <Text style={styles.detailItemText}>
                 {ingredient}
               </Text>
             </View>
@@ -112,6 +130,6 @@ const styles = StyleSheet.create({
     marginTop: 2,
     fontSize: 14,
     color: 'white',
-    textAlign: 'center',
+    textAlign: 'left',
   },
 });
