@@ -1,25 +1,30 @@
-import { Image, StyleSheet, Text, View, Pressable} from 'react-native';
+import { Image, StyleSheet, Text, View, Pressable } from 'react-native';
+import PressableCard from './PressableCard';
 
-const MealItem = ({ title, imageUrl }) => {
+const MealItem = ({ title, imageUrl, duration, complexity, affordability }) => {
   return (
-    <View style={styles.container}>
-      <Pressable>
+    <PressableCard>
+      <View style={styles.innerContainer}>
         <View>
-          <Image source={{ uri: imageUrl }} style={styles.image}/>
+          <Image source={{ uri: imageUrl }} style={styles.image} />
           <Text style={styles.title}>{title}</Text>
         </View>
-      </Pressable>
-    </View>
+        <View style={styles.details}>
+          <Text style={styles.detailItem}>{duration}m</Text>
+          <Text style={styles.detailItem}>{complexity.toUpperCase()}</Text>
+          <Text style={styles.detailItem}>{affordability.toUpperCase()}</Text>
+        </View>
+      </View>
+    </PressableCard>
   );
 };
 
 export default MealItem;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+  innerContainer: {
+    borderRadius: 8,
+    overflow: 'hidden',
   },
   image: {
     width: '100%',
@@ -28,6 +33,19 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: 18
-  }
+    fontSize: 18,
+    marginHorizontal: 8,
+    marginTop: 8,
+  },
+  details: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 8,
+    marginBottom: 5
+  },
+  detailItem: {
+    marginHorizontal: 4,
+    fontSize: 12,
+  },
 });
