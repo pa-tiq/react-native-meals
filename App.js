@@ -1,16 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import CategoryScreen from './screens/CategoryScreen';
 import MealsScreen from './screens/MealsScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
+import FavoritesScreen from './screens/FavoritesScreen';
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
-//const headerButton = () => {
-//  return <Button title='oi'/>;
-//};
+const DrawerNavigation = () => {
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: '#060505' }, //header color
+        headerTintColor: 'white', // header text color
+        sceneContainerStyle: { backgroundColor: '#665c4a' }, // background color
+      }}
+    >
+      <Drawer.Screen
+        name='Categories'
+        component={CategoryScreen}
+        options={{ title: 'All Categories' }}
+      />
+      <Drawer.Screen name='Favorites' component={FavoritesScreen} />
+    </Drawer.Navigator>
+  );
+};
 
 export default function App() {
   return (
@@ -25,18 +43,12 @@ export default function App() {
           }}
         >
           <Stack.Screen
-            name='Categories'
-            component={CategoryScreen}
-            options={{ title: 'All Categories' }}
+            name='CategoriesDrawer'
+            component={DrawerNavigation}
+            options={{ headerShown: false }}
           />
           <Stack.Screen name='CategoryDetails' component={MealsScreen} />
-          <Stack.Screen
-            name='ItemDetails'
-            component={MealDetailScreen}
-            //options={{
-            //  headerRight: headerButton,
-            //}}
-          />
+          <Stack.Screen name='ItemDetails' component={MealDetailScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

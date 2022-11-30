@@ -13,17 +13,15 @@ const MealDetailScreen = ({ route, navigation }) => {
     console.log('oi');
   };
   const headerButton = () => {
-    return <IconButton title='oi' onPress={headerButtonPressHandler}/>;
+    return <IconButton title='oi' onPress={headerButtonPressHandler} />;
   };
   useLayoutEffect(() => {
-    const mealTitle = MEALS.find(
-      (meal) => meal.id === mealId
-    ).title;
+    const mealTitle = MEALS.find((meal) => meal.id === mealId).title;
     navigation.setOptions({
       headerRight: headerButton,
-      title: mealTitle
-    })
-  },[]);
+      title: mealTitle,
+    });
+  }, []);
 
   return (
     <ScrollView style={styles.innerContainer}>
@@ -43,9 +41,7 @@ const MealDetailScreen = ({ route, navigation }) => {
         {meal.ingredients.map((ingredient, idx) => {
           return (
             <View style={styles.detailItem} key={idx}>
-              <Text style={styles.detailItemText}>
-                {ingredient}
-              </Text>
+              <Text style={styles.detailItemText}>{ingredient}</Text>
             </View>
           );
         })}
@@ -54,10 +50,8 @@ const MealDetailScreen = ({ route, navigation }) => {
       <View style={styles.detailList}>
         {meal.steps.map((step, idx) => {
           return (
-            <View style={styles.detailItem}>
-              <Text style={styles.detailItemText} key={idx}>
-                {step}
-              </Text>
+            <View style={styles.detailItem} key={idx}>
+              <Text style={styles.detailItemText}>{step}</Text>
             </View>
           );
         })}
@@ -110,20 +104,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
   },
-  detailItem:{
+  detailItem: {
     borderColor: '#cccccc',
     borderWidth: 1,
     borderRadius: 40,
-    padding:10,
-    marginVertical:4,
-    flexDirection:'row',
-    justifyContent:'space-between',
-    width:'100%',
+    padding: 10,
+    marginVertical: 4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
     elevation: 4,
     shadowColor: 'black',
-    shadowOffset: {width: 0, height: 0},
+    shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.25,
-    shadowRadius: 3
+    shadowRadius: 3,
   },
   detailItemText: {
     marginHorizontal: 4,
